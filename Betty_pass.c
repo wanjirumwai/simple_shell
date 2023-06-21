@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * main - start of function
+ * main - start of the function
  * getpid - This function gets input from user
  *
  *
