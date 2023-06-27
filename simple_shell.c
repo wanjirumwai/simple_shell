@@ -1,14 +1,14 @@
-#include <stdio.h>
+#include <sys/wait.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
 #include <signal.h>
+#include <sys/types.h>
 
 /**
- * Handle_signal - This Function informs the complier of its exitence
- * @int - Pointer to the interger value
+ * Handle_signal - This Function informs the compiler of its existence
+ * @int - Pointer to the integer value
  *
  * Return - 0 on success
  */
@@ -24,25 +24,30 @@ void handle_signal(int signal){
         printf("simple_shell$ ");
         fflush(stdout);
     }
+/**
+ * main - program entry point
+ *
+ * Return - Always 0 success.
+ */
 
 int main(void) 
 
 {
-    char command[1024];
-    int status;
+    char c[1024];
+    int i;
 
-    signal(SIGINT, handle_signal); // Handle Ctrl+C interrupt signal
+    signal(SIGINT, handle_signal); 
 
     while (1) {
         printf("simple_shell$ ");
-        if (fgets(command, sizeof(command), stdin) == NULL) {
+        if (fgets(c, sizeof(c), stdin) == NULL) {
             printf("\n");
             break;
         }
 
-        command[strcspn(command, "\n")] = '\0';
+        c[strcspn(c, "\n")] = '\0';
 
-        if (strlen(command) == 0) {
+        if (strlen(c) == 0) {
             continue;
         }
 
@@ -52,15 +57,14 @@ int main(void)
             perror("Fork error");
             exit(EXIT_FAILURE);
         } else if (pid == 0) {
-            // Child process
-            char *args[] = {command, NULL};
-            if (execve(command, args, environ) == -1) {
-                perror("Command execution error");
+            
+            char *args[] = {c, NULL};
+            if (execve(c, args, environ) == -1) {
+                perror("Execution error of command");
                 exit(EXIT_FAILURE);
             }
         } else {
-            // Parent process
-            waitpid(pid, &status, 0);
+            waitpid(pid, &i, 0);
         }
     }
 
