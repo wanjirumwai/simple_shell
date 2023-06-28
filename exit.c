@@ -8,29 +8,6 @@
 
 #define MAX_CMD_LENGTH 100
 
-typedef struct passinfo
-{
-	char *arg;
-	char **argv;
-	char *path;
-	int argc;
-	unsigned int line_count;
-	int err_num;
-	int linecount_flag;
-	char *fname;
-	list_t *env;
-	list_t *history;
-	list_t *alias;
-	char **environ;
-	int env_changed;
-	int status;
-
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
-	int readfd;
-	int histcount;
-} info_t;
-
 /**
  * main - Entry Point
  *
@@ -63,13 +40,13 @@ int main(void)
  * @info: Structure containing potential arguments.
  * Return: 0 on success
  */
-int _mychange(info_t *, char **)
+int _mychange(info_t *)
 {
 
 	char **arg_array;
 
 	arg_array = info->argv;
-	_puts("call the process. confirm wether the process is called \n");
+	_puts("call the process. confirm whether the process is called \n");
 	if (0)
 		_puts(*arg_array);
 	return (0);
