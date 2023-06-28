@@ -40,7 +40,7 @@ int main(void)
  * @info: Structure containing potential arguments.
  * Return: 0 on success
  */
-int _mychange(info_t *)
+int _mychange(info_t *, char **)
 {
 
 	char **arg_array;
