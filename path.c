@@ -1,5 +1,10 @@
 #include <stdio.h>
-#include "main.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
 
 /**
 * duplicate_char - the program allows to duplicate characters
@@ -9,6 +14,7 @@
 *
 * Return: pointer to value
 */
+
 char *duplicate_char(char *path_string, int start, int stop)
 {
 static char c[1024];
@@ -21,9 +27,9 @@ c[y] = 0;
 return (c);
 }
 /**
+ * is_cmd - function determines if file is executable
  * @info: points to the information structure
  * @path: points to file path
- * is_cmd - function determines if file is executable
  *
  * Return: 1 on success or else 0
  */
@@ -42,10 +48,11 @@ return (1);
 	return (0);
 }
 /**
- * @command: points to the command of path 
+ * find_path - function allows user to find command prompt in path
+ * @command: points to the command of path
  * @path_string: points to the string path
  * @info: points to the structure of the information
- * find_path - function allows user to find command prompt in path
+ *
  *
  * Return: command path (on success) or NULL
  */
@@ -83,4 +90,3 @@ x++;
 }
 return (NULL);
 }
-
