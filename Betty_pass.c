@@ -1,21 +1,16 @@
-#include <stdio.h>
 #include <unistd.h>
-#include <stdlib.h>
 
 /**
- * main - start of the function
- * getpid - This function gets input from user
+ * main - Entry point of the program
  *
- *
- * Return: 0 on success.
+ * Return: 0 on success
  */
 
 int main(void)
 {
-	pid_t my_pid;
+	char *message = "hello world\n";
 
-	my_pid = getpid();
-	write("%u\n", my_pid);
+	write(STDOUT_FILENO, message);
 
 	return (0);
 }
